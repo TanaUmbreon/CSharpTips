@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tips.ConsoleEx
+namespace Tips.ConsoleApp
 {
     /// <summary>
     /// コンソール アプリケーションの拡張的な機能を提供します。
@@ -16,10 +16,7 @@ namespace Tips.ConsoleEx
         /// 指定した時間が経過するもしくは、ユーザーが任意のキーを押すまでプログラムを待機します。
         /// </summary>
         /// <param name="milliseconds">待機する時間 (ミリ秒単位)。</param>
-        public static void Timeout(long milliseconds)
-        {
-            Timeout(TimeSpan.FromMilliseconds(milliseconds));
-        }
+        public static void Timeout(long milliseconds)  => Timeout(TimeSpan.FromMilliseconds(milliseconds));
 
         /// <summary>
         /// 指定した時間が経過するもしくは、ユーザーが任意のキーを押すまでプログラムを待機します。
