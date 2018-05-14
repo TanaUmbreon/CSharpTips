@@ -1,13 +1,6 @@
 # Tips
 
-主にメモ用途の Tips 集です。
-
-## プロジェクト構成
-
-* `Tips.ConsoleApp`
-  * コンソール アプリケーションで使用するためのコードをまとめています。
-* `Tips.ConsoleApp.Demo`
-  * Tips.ConsoleApp の動作デモを見ることができます。
+C# の Tips 集です。
 
 ## 機能説明
 
@@ -30,7 +23,14 @@ static void Main(string[] args)
 
 #### 実行結果
 
-![実行結果](images\ConsoleEx.Timeout.png)
+![実行結果](https://raw.githubusercontent.com/TanaUmbreon/CSharpTips/images/ConsoleEx-Timeout.png)
+
+## プロジェクト構成
+
+* `Tips.ConsoleApp`
+  * コンソール アプリケーションで使用するためのコードをまとめています。
+* `Tips.ConsoleApp.Demo`
+  * Tips.ConsoleApp の動作デモを見ることができます。
 
 ## ライセンスについて
 
