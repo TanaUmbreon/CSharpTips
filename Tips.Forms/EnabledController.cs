@@ -6,25 +6,25 @@ using System.Windows.Forms;
 namespace Tips.Forms
 {
     /// <summary>
-    /// フォームに追加された全子孫コントロールの有効状態を保存し復元する機能を提供します。
+    /// フォームに追加された全子孫コントロールの有効状態を一元的に操作します。
     /// </summary>
-    public class ControlEnabledRegister
+    public class EnabledController
     {
-        /// <summary>操作対象のフォーム</summary>
-        private Form form;
+        /// <summary>操作対象のコントロールを保持するフォーム</summary>
+        private Form owner;
         /// <summary>コントロールとその有効状態を保持するマップ</summary>
         private Dictionary<Control, bool> controlEnabledMap;
 
         /// <summary>
-        /// <see cref="ControlEnabledRegister"/> の新しいインスタンスを生成します。
+        /// <see cref="EnabledController"/> の新しいインスタンスを生成します。
         /// </summary>
-        /// <param name="form">有効状態を保持する</param>
-        public ControlEnabledRegister(Form form)
+        /// <param name="owner">操作対象のコントロールを保持するフォーム。</param>
+        public EnabledController(Form owner)
         {
-            this.form = form;
+            this.owner = owner;
 
             controlEnabledMap = new Dictionary<Control, bool>();
-            GetAllControls(form).ForEach(cont => controlEnabledMap.Add(cont, cont.Enabled));
+            GetAllControls(owner).ForEach(cont => controlEnabledMap.Add(cont, cont.Enabled));
         }
 
         /// <summary>
@@ -53,12 +53,24 @@ namespace Tips.Forms
             if (InvokeIfRequired(Save)) { return; }
 
             // Dictionaryのforeach中に値を変えると例外が起きるのでキーを複製してそれをループ
-            var keys = controlEnabledMap.Keys.ToList();
-            keys.ForEach((key) =>
+            controlEnabledMap.Keys.ToList().ForEach(key =>
             {
-                if (!controlEnabledMap.ContainsKey(key)) { return; }
                 controlEnabledMap[key] = key.Enabled;
             });
+        }
+
+        /// <summary>
+        /// 指定した値で全子孫コントロールの有効状態を設定します。
+        /// </summary>
+        /// <param name="value">設定するコントロールの有効状態。</param>
+        public void SetEnabled(bool value)
+        {
+            if (InvokeIfRequired(() => SetEnabled(value))) { return; }
+
+            foreach (var key in controlEnabledMap.Keys)
+            {
+                key.Enabled = value;
+            }
         }
 
         /// <summary>
@@ -83,9 +95,9 @@ namespace Tips.Forms
         /// <returns>Invoke が呼び出された場合は true。Invoke が呼び出されなかった場合は false。</returns>
         private bool InvokeIfRequired(Action action)
         {
-            if (!form.InvokeRequired) { return false; }
+            if (!owner.InvokeRequired) { return false; }
 
-            form.Invoke(action);
+            owner.Invoke(action);
             return true;
         }
     }

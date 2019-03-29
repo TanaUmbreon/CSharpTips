@@ -7,69 +7,49 @@ namespace Tips.Forms
 {
     public partial class Form1 : Form
     {
-        private ControlEnabledRegister register;
+        /// <summary>有効状態操作オブジェクト</summary>
+        private EnabledController controller;
 
         public Form1()
         {
             InitializeComponent();
+
+            controller = new EnabledController(this);
+            labelWidthInfo.Text = string.Format(labelWidthInfo.Text, textBox3.Width);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void buttonRun_Click(object sender, EventArgs e)
         {
-            register = new ControlEnabledRegister(this);
+            // 有効状態を保存
+            controller.Save();
+
+            // 全コントロールを無効化
+            controller.SetEnabled(false);
+
+            // 適当に長い処理
+            await Task.Run(() => Thread.Sleep(TimeSpan.FromSeconds(1.97)));
+
+            // 有効状態を保存した状態に戻す
+            controller.Restore();
         }
 
-        #region コントロールの有効状態を任意に変更
+        #region 有効状態の単体切替
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void buttonSwitch1_Click(object sender, EventArgs e)
         {
-            textBox1.Enabled = checkBox1.Checked;
+            textBox1.Enabled = !textBox1.Enabled;
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void buttonSwitch2_Click(object sender, EventArgs e)
         {
-            textBox2.Enabled = checkBox2.Checked;
+            textBox2.Enabled = !textBox2.Enabled;
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void buttonSwitch3_Click(object sender, EventArgs e)
         {
-            textBox3.Enabled = checkBox3.Checked;
-        }
-
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox4.Enabled = checkBox4.Checked;
+            textBox3.Enabled = !textBox3.Enabled;
         }
 
         #endregion
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // 有効状態を保持
-                register.Save();
-
-                // 全コントロールを無効化
-                button1.Enabled = false;
-                textBox1.Enabled = false;
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                textBox4.Enabled = false;
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-
-                // 長い処理を実行
-                await Task.Run(() => Thread.Sleep(TimeSpan.FromSeconds(2.0)));
-
-                // 有効状態を復元
-                register.Restore();
-            }
-            catch (Exception)
-            {
-            }
-        }
     }
 }
