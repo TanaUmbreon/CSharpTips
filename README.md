@@ -4,18 +4,18 @@ C# (とコードを書き換えれば VB.NET) で使える、ちょっとした�
 
 ## プロジェクト構成
 
-[Tips.ConsoleApp](https://github.com/TanaUmbreon/CSharpTips/tree/master/Tips.ConsoleApp)
+[Tips.ConsoleApp](./Tips.ConsoleApp)
   - コンソール アプリケーションで使用するためのコードをまとめています。
-  - 詳細は [Readme](https://github.com/TanaUmbreon/CSharpTips/tree/master/Tips.ConsoleApp/Readme.md) にて。
+  - 詳細は [Readme](./Tips.ConsoleApp/Readme.md) にて。
 
-[Tips.ConsoleApp.Demo](https://github.com/TanaUmbreon/CSharpTips/tree/master/Tips.ConsoleApp.Demo)
+[Tips.ConsoleApp.Demo](./Tips.ConsoleApp.Demo)
   - Tips.ConsoleApp の動作デモと使い方を見ることができます。
 
-[Tips.Forms](https://github.com/TanaUmbreon/CSharpTips/tree/master/Tips.Forms)
+[Tips.Forms](./Tips.Forms)
   - Form アプリケーションで使用するためのコードをまとめています。
-  - 詳細は [Readme](https://github.com/TanaUmbreon/CSharpTips/tree/master/Tips.Forms/Readme.md) にて。
+  - 詳細は [Readme](./Tips.Forms/Readme.md) にて。
 
-[Tips.Forms.Demo](https://github.com/TanaUmbreon/CSharpTips/tree/master/Tips.Forms.Demo)
+[Tips.Forms.Demo](./Tips.Forms.Demo)
   - Tips.Forms の動作デモと使い方を見ることができます。
 
 ## ライセンスについて
